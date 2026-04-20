@@ -1,4 +1,4 @@
-cache/
 cityflow-env/
+cache/
 __pycache__/
 *.pyc
