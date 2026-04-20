@@ -86,7 +86,7 @@ def get_eta_min(dist_m, speed_kmh):
 
 @st.cache_resource(show_spinner="Граф ачааллаж байна...")
 def load_graph():
-    path = os.path.join(DATA_DIR, "sukhbaatar.graphml")
+    path = os.path.join(DATA_DIR, "ulaanbaatar.graphml")
     if os.path.exists(path):
         return ox.load_graphml(path)
     return None

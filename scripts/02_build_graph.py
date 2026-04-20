@@ -19,16 +19,14 @@ BASE_DIR   = os.path.join(os.path.dirname(__file__), "..")
 DATA_DIR   = os.path.join(BASE_DIR, "data")
 OUTPUT_DIR = os.path.join(BASE_DIR, "output")
 
-SPEED_PEAK   = 10   # km/h
-SPEED_NORMAL = 30   # km/h
-
-# Оргил цагийн мужууд
-RUSH_HOURS = [(7, 9), (17, 19)]
+SPEED_PEAK   = 10
+SPEED_NORMAL = 30
+RUSH_HOURS   = [(7, 9), (17, 19)]
 # ──────────────────────────────────────────────────────────
 
 
 def load_graph(data_dir: str):
-    path = os.path.join(data_dir, "sukhbaatar.graphml")
+    path = os.path.join(data_dir, "ulaanbaatar.graphml")
     log.info("Граф ачааллаж байна: %s", path)
     G = ox.load_graphml(path)
     log.info("Зангилаа: %d | Ирмэг: %d", len(G.nodes), len(G.edges))
@@ -40,30 +38,21 @@ def is_rush_hour(hour: int) -> bool:
 
 
 def add_weighted_travel_times(G):
-    """
-    Ирмэг бүрт хоёр жин нэмнэ:
-      - travel_time_peak   : оргил цагийн секунд
-      - travel_time_normal : ердийн цагийн секунд
-    """
     log.info("Оргил / ердийн цагийн travel_time тооцоолж байна...")
-
     for u, v, data in G.edges(data=True):
-        length_m = data.get("length", 50)  # метр
-
+        length_m = data.get("length", 50)
         data["travel_time_peak"]   = (length_m / 1000) / SPEED_PEAK   * 3600
         data["travel_time_normal"] = (length_m / 1000) / SPEED_NORMAL * 3600
-
     return G
 
 
 def compute_stats(G):
-    """Графийн үндсэн статистик"""
     lengths = [d["length"] for _, _, d in G.edges(data=True) if "length" in d]
     stats = {
-        "nodes"         : len(G.nodes),
-        "edges"         : len(G.edges),
-        "total_km"      : round(sum(lengths) / 1000, 1),
-        "avg_edge_m"    : round(sum(lengths) / len(lengths), 1) if lengths else 0,
+        "nodes"      : len(G.nodes),
+        "edges"      : len(G.edges),
+        "total_km"   : round(sum(lengths) / 1000, 1),
+        "avg_edge_m" : round(sum(lengths) / len(lengths), 1) if lengths else 0,
     }
     log.info("Статистик: %s", json.dumps(stats, ensure_ascii=False))
     return stats
@@ -78,9 +67,8 @@ def save_stats(stats: dict):
 
 
 def build_sumo_network(data_dir: str):
-    """osm → sumo net.xml хөрвүүлэлт"""
-    osm_path = os.path.join(data_dir, "sukhbaatar.osm")
-    net_path = os.path.join(data_dir, "sukhbaatar.net.xml")
+    osm_path = os.path.join(data_dir, "ulaanbaatar.osm")
+    net_path = os.path.join(data_dir, "ulaanbaatar.net.xml")
 
     cmd = [
         "netconvert",
@@ -108,29 +96,21 @@ def build_sumo_network(data_dir: str):
 
 
 def plot_with_peaks(G):
-    """Оргил цагийн ачааллыг өнгөөр харуулна"""
     import matplotlib.pyplot as plt
     import matplotlib.cm as cm
-    import numpy as np
 
     fig, axes = plt.subplots(1, 2, figsize=(16, 7), facecolor="#1a1a2e")
 
     for ax, mode in zip(axes, ["peak", "normal"]):
-        key = f"travel_time_{mode}"
+        key   = f"travel_time_{mode}"
         times = [d.get(key, 60) for _, _, d in G.edges(data=True)]
         max_t = max(times) if times else 1
-
         edge_colors = [cm.RdYlGn_r(t / max_t) for t in times]
 
         ox.plot_graph(
-            G,
-            ax=ax,
-            node_size=3,
-            edge_linewidth=0.7,
-            edge_color=edge_colors,
-            bgcolor="#1a1a2e",
-            show=False,
-            close=False,
+            G, ax=ax, node_size=3, edge_linewidth=0.7,
+            edge_color=edge_colors, bgcolor="#1a1a2e",
+            show=False, close=False,
         )
         label = "Оргил цаг (07-09, 17-19)" if mode == "peak" else "Ердийн цаг"
         ax.set_title(label, color="white", fontsize=12, pad=8)

@@ -19,13 +19,12 @@ log = logging.getLogger(__name__)
 BASE_DIR   = os.path.join(os.path.dirname(__file__), "..")
 DATA_DIR   = os.path.join(BASE_DIR, "data")
 OUTPUT_DIR = os.path.join(BASE_DIR, "output")
-CFG_PATH   = os.path.join(BASE_DIR, "scripts", "sukhbaatar.sumocfg")
+CFG_PATH   = os.path.join(BASE_DIR, "scripts", "ulaanbaatar.sumocfg")
 
-SPEED_PEAK   = 10   # km/h — оргил цагийн дундаж хурд
-SPEED_NORMAL = 30   # km/h — ердийн цагийн дундаж хурд
-
-N_VEHICLES   = 50   # симуляцийн тээврийн хэрэгслийн тоо
-SIM_DURATION = 3600 # секунд (1 цаг)
+SPEED_PEAK   = 10
+SPEED_NORMAL = 30
+N_VEHICLES   = 50
+SIM_DURATION = 3600
 RANDOM_SEED  = 42
 # ──────────────────────────────────────────────────────────
 
@@ -33,9 +32,9 @@ RANDOM_SEED  = 42
 @dataclass
 class Vehicle:
     id:          str
-    depart:      float          # симуляцийн эхлэлээс хэдэн секундад гарах
-    route:       List[str]      # зангилааны жагсаалт
-    travel_time: float = 0.0   # дуусгасан хугацаа (сек)
+    depart:      float
+    route:       List[str]
+    travel_time: float = 0.0
     arrived:     bool  = False
 
 
@@ -51,8 +50,7 @@ class SimResult:
 
 
 def load_net_xml(data_dir: str):
-    """net.xml-аас edge жагсаалт унших"""
-    net_path = os.path.join(data_dir, "sukhbaatar.net.xml")
+    net_path = os.path.join(data_dir, "ulaanbaatar.net.xml")
     if not os.path.exists(net_path):
         log.warning("net.xml олдсонгүй — mock edge ашиглана")
         return [f"edge_{i}" for i in range(200)]
@@ -66,40 +64,27 @@ def load_net_xml(data_dir: str):
 
 
 def generate_vehicles(edges: List[str], n: int, seed: int) -> List[Vehicle]:
-    """Санамсаргүй маршруттай тээврийн хэрэгсэл үүсгэнэ"""
     random.seed(seed)
     vehicles = []
     for i in range(n):
         route_len = random.randint(3, 10)
-        route = random.sample(edges, min(route_len, len(edges)))
+        route  = random.sample(edges, min(route_len, len(edges)))
         depart = random.uniform(0, SIM_DURATION * 0.5)
         vehicles.append(Vehicle(id=f"veh_{i:03d}", depart=depart, route=route))
     return vehicles
 
 
 def simulate_scenario(vehicles: List[Vehicle], speed_kmh: float, label: str) -> SimResult:
-    """
-    Хялбарчилсан симуляци:
-    Зам урт × хурд → travel_time
-    SUMO суулгасан бол traci ашиглан бодит симуляци хийж болно.
-    """
     log.info("Симуляци: %s  |  Хурд: %d km/h", label, speed_kmh)
-
-    arrived = 0
-    total_time = 0.0
-    results = []
+    arrived, total_time, results = 0, 0.0, []
 
     for veh in vehicles:
-        # Маршрутын нийт урт (mock: edge тус бүр 200–600м)
         distance_m = sum(random.uniform(200, 600) for _ in veh.route)
-
-        # Travel time + бага зэрэг хувьсал (бодит нөхцөл дуурайлга)
-        base_time = (distance_m / 1000) / speed_kmh * 3600
-        noise = random.gauss(0, base_time * 0.1)
+        base_time  = (distance_m / 1000) / speed_kmh * 3600
+        noise      = random.gauss(0, base_time * 0.1)
         veh.travel_time = max(60, base_time + noise)
         veh.arrived = True
-
-        arrived += 1
+        arrived    += 1
         total_time += veh.travel_time
         results.append({"id": veh.id, "travel_time_s": round(veh.travel_time, 1)})
 
@@ -116,7 +101,6 @@ def simulate_scenario(vehicles: List[Vehicle], speed_kmh: float, label: str) -> 
 
 
 def compare_scenarios(edges: List[str]) -> Dict:
-    """Оргил болон ердийн цагийг харьцуулна"""
     random.seed(RANDOM_SEED)
     vehicles_peak   = generate_vehicles(edges, N_VEHICLES, seed=RANDOM_SEED)
     vehicles_normal = generate_vehicles(edges, N_VEHICLES, seed=RANDOM_SEED + 1)
@@ -139,7 +123,6 @@ def compare_scenarios(edges: List[str]) -> Dict:
     log.info("Ердийн цаг дундаж: %.1f мин", normal.avg_travel_time_m)
     log.info("Хэмнэлт:           %.1f%%", improvement)
     log.info("─" * 40)
-
     return summary
 
 
@@ -152,14 +135,12 @@ def save_results(summary: Dict):
 
 
 def try_run_sumo():
-    """SUMO суулгасан бол бодит симуляци ажиллуулна"""
     import subprocess
     if not os.path.exists(CFG_PATH):
         log.warning("sumocfg олдсонгүй, SUMO-г алгасав")
         return
 
-    cmd = ["sumo", "-c", CFG_PATH,
-           "--no-warnings", "--duration-log.disable"]
+    cmd = ["sumo", "-c", CFG_PATH, "--no-warnings", "--duration-log.disable"]
     result = subprocess.run(cmd, capture_output=True, text=True, timeout=120)
 
     if result.returncode == 0:
@@ -173,7 +154,7 @@ def main():
     summary = compare_scenarios(edges)
     save_results(summary)
     try_run_sumo()
-    log.info("3_run_sumo.py дууслаа")
+    log.info("03_run_sumo.py дууслаа")
 
 
 if __name__ == "__main__":

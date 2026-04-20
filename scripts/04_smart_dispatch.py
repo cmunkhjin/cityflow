@@ -232,7 +232,7 @@ def print_summary(results):
 
 
 def main():
-    graphml = os.path.join(DATA_DIR, "sukhbaatar.graphml")
+    graphml = os.path.join(DATA_DIR, "ulaanbaatar.graphml")
 
     if not os.path.exists(graphml):
         log.error("GraphML олдсонгүй. Эхлээд 01_fetch_osm.py ажиллуулна уу.")
