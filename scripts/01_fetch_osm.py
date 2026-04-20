@@ -1,6 +1,6 @@
 """
 01_fetch_osm.py
-Суkhbaatar дүүргийн OSM өгөгдлийг татаж, граф байгуулна.
+Улаанбаатар хотын бүх дүүргийн OSM өгөгдлийг татаж, граф байгуулна.
 """
 
 import osmnx as ox
@@ -11,7 +11,9 @@ logging.basicConfig(level=logging.INFO, format="%(asctime)s  %(message)s")
 log = logging.getLogger(__name__)
 
 # ── Тохиргоо ──────────────────────────────────────────────
-PLACE      = "Sukhbaatar District, Ulaanbaatar, Mongolia"
+# Улаанбаатар хотын бүх дүүргийг хамарсан bounding box
+# (north, south, east, west)
+BBOX       = (48.0200, 47.8000, 107.1500, 106.6000)
 DATA_DIR   = os.path.join(os.path.dirname(__file__), "..", "data")
 NETWORK    = "drive"   # явган: "walk" | нийтийн тээвр: "all"
 
@@ -21,9 +23,18 @@ SPEED_NORMAL  = 30
 # ──────────────────────────────────────────────────────────
 
 
-def fetch_graph(place: str, network: str):
-    log.info("OSM-аас граф татаж байна: %s", place)
-    G = ox.graph_from_place(place, network_type=network)
+def fetch_graph(bbox: tuple, network: str):
+    north, south, east, west = bbox
+    log.info(
+        "OSM-аас граф татаж байна (bbox): N=%.4f S=%.4f E=%.4f W=%.4f",
+        north, south, east, west,
+    )
+
+    G = ox.graph_from_bbox(
+        bbox=(north, south, east, west),
+        network_type=network,
+        simplify=True,
+    )
 
     # Зам бүрт хурдны хязгаар нэмнэ (байхгүй бол default)
     G = ox.add_edge_speeds(G)
@@ -36,8 +47,8 @@ def fetch_graph(place: str, network: str):
 def save_graph(G, data_dir: str):
     os.makedirs(data_dir, exist_ok=True)
 
-    graphml_path = os.path.join(data_dir, "sukhbaatar.graphml")
-    osm_path     = os.path.join(data_dir, "sukhbaatar.osm")
+    graphml_path = os.path.join(data_dir, "ulaanbaatar.graphml")
+    osm_path     = os.path.join(data_dir, "ulaanbaatar.osm")
 
     ox.save_graphml(G, graphml_path)
     log.info("GraphML хадгаллаа → %s", graphml_path)
@@ -68,7 +79,7 @@ def plot_graph(G, data_dir: str):
 
 
 def main():
-    G = fetch_graph(PLACE, NETWORK)
+    G = fetch_graph(BBOX, NETWORK)
     save_graph(G, DATA_DIR)
     plot_graph(G, DATA_DIR)
     log.info("01_fetch_osm.py дууслаа")
