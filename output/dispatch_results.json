@@ -1,0 +1,18 @@
+[
+  {
+    "hour": 8,
+    "scenario": "оргил цаг",
+    "n_orders": 100,
+    "avg_nearest_min": 43.6,
+    "avg_smart_min": 40.11,
+    "improvement_pct": 8.0
+  },
+  {
+    "hour": 14,
+    "scenario": "ердийн цаг",
+    "n_orders": 100,
+    "avg_nearest_min": 11.65,
+    "avg_smart_min": 11.1,
+    "improvement_pct": 4.7
+  }
+]

@@ -1,6 +1,8 @@
 """
 01_fetch_osm.py
 Улаанбаатар хотын бүх дүүргийн OSM өгөгдлийг татаж, граф байгуулна.
+- ulaanbaatar.graphml  : симуляци + маршрутын шинжилгээнд
+- ulaanbaatar.osm      : SUMO netconvert-д
 """
 
 import osmnx as ox
@@ -15,7 +17,7 @@ log = logging.getLogger(__name__)
 # (north, south, east, west)
 BBOX       = (48.0200, 47.8000, 107.1500, 106.6000)
 DATA_DIR   = os.path.join(os.path.dirname(__file__), "..", "data")
-NETWORK    = "drive"   # явган: "walk" | нийтийн тээвр: "all"
+NETWORK    = "drive"
 
 SPEED_PEAK   = 10   # 07-09, 17-19
 SPEED_NORMAL = 30
@@ -23,13 +25,15 @@ SPEED_NORMAL = 30
 
 
 def fetch_graph(bbox: tuple, network: str):
+    """simplify=True — GraphML болон шинжилгээнд"""
     north, south, east, west = bbox
     log.info(
         "OSM-аас граф татаж байна (bbox): N=%.4f S=%.4f E=%.4f W=%.4f",
         north, south, east, west,
     )
+    # osmnx v2+ requires bbox as (west, south, east, north)
     G = ox.graph_from_bbox(
-        bbox=(north, south, east, west),
+        bbox=(west, south, east, north),
         network_type=network,
         simplify=True,
     )
@@ -39,15 +43,31 @@ def fetch_graph(bbox: tuple, network: str):
     return G
 
 
-def save_graph(G, data_dir: str):
-    os.makedirs(data_dir, exist_ok=True)
-    graphml_path = os.path.join(data_dir, "ulaanbaatar.graphml")
-    osm_path     = os.path.join(data_dir, "ulaanbaatar.osm")
+def fetch_graph_unsimplified(bbox: tuple, network: str):
+    """simplify=False — SUMO netconvert-д OSM XML хэрэгтэй"""
+    north, south, east, west = bbox
+    log.info("OSM XML-д зориулж unsimplified граф татаж байна...")
+    G = ox.graph_from_bbox(
+        bbox=(west, south, east, north),
+        network_type=network,
+        simplify=False,
+    )
+    log.info("Unsimplified — Зангилаа: %d | Ирмэг: %d", len(G.nodes), len(G.edges))
+    return G
 
+
+def save_graph(G, G_raw, data_dir: str):
+    os.makedirs(data_dir, exist_ok=True)
+
+    # 1) GraphML (simplified)
+    graphml_path = os.path.join(data_dir, "ulaanbaatar.graphml")
     ox.save_graphml(G, graphml_path)
     log.info("GraphML хадгаллаа → %s", graphml_path)
 
-    ox.save_graph_xml(G, osm_path)
+    # 2) OSM XML (unsimplified) — SUMO netconvert-д
+    osm_path = os.path.join(data_dir, "ulaanbaatar.osm")
+    ox.settings.all_oneway = True
+    ox.save_graph_xml(G_raw, osm_path)
     log.info("OSM XML хадгаллаа → %s", osm_path)
 
 
@@ -71,8 +91,9 @@ def plot_graph(G, data_dir: str):
 
 
 def main():
-    G = fetch_graph(BBOX, NETWORK)
-    save_graph(G, DATA_DIR)
+    G     = fetch_graph(BBOX, NETWORK)
+    G_raw = fetch_graph_unsimplified(BBOX, NETWORK)
+    save_graph(G, G_raw, DATA_DIR)
     plot_graph(G, DATA_DIR)
     log.info("01_fetch_osm.py дууслаа")
 
