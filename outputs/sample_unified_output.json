@@ -1,0 +1,607 @@
+{
+    "_meta": {
+      "description": "CityFlow unified output — deterministic, reproducible",
+      "random_uniform_used": false,
+      "graph_based_routing": true,
+      "kpi_source": "single pipeline (mock_data.py → kpi.py)",
+      "vehicle_type": "van",
+      "co2_factor_g_km": 180
+    },
+    "simulation_results": [
+      {
+        "scenario": "Оргил цаг",
+        "hour": 8,
+        "speed_kmh": 10,
+        "n_vehicles": 50,
+        "avg_distance_m": 3088.9,
+        "avg_travel_time_s": 1112.0,
+        "avg_travel_time_m": 18.53,
+        "avg_delay_s": 789.7,
+        "congestion_pct": 80.0,
+        "arrived_pct": 100.0,
+        "vehicles": [
+          {
+            "id": "veh_000",
+            "distance_m": 2070.0,
+            "travel_time_s": 745.2
+          },
+          {
+            "id": "veh_001",
+            "distance_m": 2530.0,
+            "travel_time_s": 910.8
+          },
+          {
+            "id": "veh_002",
+            "distance_m": 3565.0,
+            "travel_time_s": 1283.4
+          },
+          {
+            "id": "veh_003",
+            "distance_m": 3105.0,
+            "travel_time_s": 1117.8
+          },
+          {
+            "id": "veh_004",
+            "distance_m": 2242.5,
+            "travel_time_s": 807.3
+          },
+          {
+            "id": "veh_005",
+            "distance_m": 4025.0,
+            "travel_time_s": 1449.0
+          },
+          {
+            "id": "veh_006",
+            "distance_m": 2357.5,
+            "travel_time_s": 848.7
+          },
+          {
+            "id": "veh_007",
+            "distance_m": 4830.0,
+            "travel_time_s": 1738.8
+          },
+          {
+            "id": "veh_008",
+            "distance_m": 1840.0,
+            "travel_time_s": 662.4
+          },
+          {
+            "id": "veh_009",
+            "distance_m": 4370.0,
+            "travel_time_s": 1573.2
+          },
+          {
+            "id": "veh_010",
+            "distance_m": 2760.0,
+            "travel_time_s": 993.6
+          },
+          {
+            "id": "veh_011",
+            "distance_m": 2012.5,
+            "travel_time_s": 724.5
+          },
+          {
+            "id": "veh_012",
+            "distance_m": 3795.0,
+            "travel_time_s": 1366.2
+          },
+          {
+            "id": "veh_013",
+            "distance_m": 3335.0,
+            "travel_time_s": 1200.6
+          },
+          {
+            "id": "veh_014",
+            "distance_m": 2415.0,
+            "travel_time_s": 869.4
+          },
+          {
+            "id": "veh_015",
+            "distance_m": 5175.0,
+            "travel_time_s": 1863.0
+          },
+          {
+            "id": "veh_016",
+            "distance_m": 2127.5,
+            "travel_time_s": 765.9
+          },
+          {
+            "id": "veh_017",
+            "distance_m": 2990.0,
+            "travel_time_s": 1076.4
+          },
+          {
+            "id": "veh_018",
+            "distance_m": 3507.5,
+            "travel_time_s": 1262.7
+          },
+          {
+            "id": "veh_019",
+            "distance_m": 1955.0,
+            "travel_time_s": 703.8
+          },
+          {
+            "id": "veh_020",
+            "distance_m": 2702.5,
+            "travel_time_s": 972.9
+          },
+          {
+            "id": "veh_021",
+            "distance_m": 4255.0,
+            "travel_time_s": 1531.8
+          },
+          {
+            "id": "veh_022",
+            "distance_m": 3220.0,
+            "travel_time_s": 1159.2
+          },
+          {
+            "id": "veh_023",
+            "distance_m": 1782.5,
+            "travel_time_s": 641.7
+          },
+          {
+            "id": "veh_024",
+            "distance_m": 4715.0,
+            "travel_time_s": 1697.4
+          },
+          {
+            "id": "veh_025",
+            "distance_m": 2587.5,
+            "travel_time_s": 931.5
+          },
+          {
+            "id": "veh_026",
+            "distance_m": 3910.0,
+            "travel_time_s": 1407.6
+          },
+          {
+            "id": "veh_027",
+            "distance_m": 2185.0,
+            "travel_time_s": 786.6
+          },
+          {
+            "id": "veh_028",
+            "distance_m": 3047.5,
+            "travel_time_s": 1097.1
+          },
+          {
+            "id": "veh_029",
+            "distance_m": 3622.5,
+            "travel_time_s": 1304.1
+          },
+          {
+            "id": "veh_030",
+            "distance_m": 2300.0,
+            "travel_time_s": 828.0
+          },
+          {
+            "id": "veh_031",
+            "distance_m": 4945.0,
+            "travel_time_s": 1780.2
+          },
+          {
+            "id": "veh_032",
+            "distance_m": 1897.5,
+            "travel_time_s": 683.1
+          },
+          {
+            "id": "veh_033",
+            "distance_m": 2817.5,
+            "travel_time_s": 1014.3
+          },
+          {
+            "id": "veh_034",
+            "distance_m": 4140.0,
+            "travel_time_s": 1490.4
+          },
+          {
+            "id": "veh_035",
+            "distance_m": 2472.5,
+            "travel_time_s": 890.1
+          },
+          {
+            "id": "veh_036",
+            "distance_m": 3737.5,
+            "travel_time_s": 1345.5
+          },
+          {
+            "id": "veh_037",
+            "distance_m": 2070.0,
+            "travel_time_s": 745.2
+          },
+          {
+            "id": "veh_038",
+            "distance_m": 3162.5,
+            "travel_time_s": 1138.5
+          },
+          {
+            "id": "veh_039",
+            "distance_m": 4600.0,
+            "travel_time_s": 1656.0
+          },
+          {
+            "id": "veh_040",
+            "distance_m": 2645.0,
+            "travel_time_s": 952.2
+          },
+          {
+            "id": "veh_041",
+            "distance_m": 1840.0,
+            "travel_time_s": 662.4
+          },
+          {
+            "id": "veh_042",
+            "distance_m": 4485.0,
+            "travel_time_s": 1614.6
+          },
+          {
+            "id": "veh_043",
+            "distance_m": 2932.5,
+            "travel_time_s": 1055.7
+          },
+          {
+            "id": "veh_044",
+            "distance_m": 3507.5,
+            "travel_time_s": 1262.7
+          },
+          {
+            "id": "veh_045",
+            "distance_m": 2012.5,
+            "travel_time_s": 724.5
+          },
+          {
+            "id": "veh_046",
+            "distance_m": 3277.5,
+            "travel_time_s": 1179.9
+          },
+          {
+            "id": "veh_047",
+            "distance_m": 3967.5,
+            "travel_time_s": 1428.3
+          },
+          {
+            "id": "veh_048",
+            "distance_m": 2357.5,
+            "travel_time_s": 848.7
+          },
+          {
+            "id": "veh_049",
+            "distance_m": 2242.5,
+            "travel_time_s": 807.3
+          }
+        ]
+      },
+      {
+        "scenario": "Ердийн цаг",
+        "hour": 14,
+        "speed_kmh": 30,
+        "n_vehicles": 50,
+        "avg_distance_m": 2686.0,
+        "avg_travel_time_s": 322.3,
+        "avg_travel_time_m": 5.37,
+        "avg_delay_s": 0.0,
+        "congestion_pct": 40.0,
+        "arrived_pct": 100.0,
+        "vehicles": [
+          {
+            "id": "veh_000",
+            "distance_m": 1800.0,
+            "travel_time_s": 216.0
+          },
+          {
+            "id": "veh_001",
+            "distance_m": 2200.0,
+            "travel_time_s": 264.0
+          },
+          {
+            "id": "veh_002",
+            "distance_m": 3100.0,
+            "travel_time_s": 372.0
+          },
+          {
+            "id": "veh_003",
+            "distance_m": 2700.0,
+            "travel_time_s": 324.0
+          },
+          {
+            "id": "veh_004",
+            "distance_m": 1950.0,
+            "travel_time_s": 234.0
+          },
+          {
+            "id": "veh_005",
+            "distance_m": 3500.0,
+            "travel_time_s": 420.0
+          },
+          {
+            "id": "veh_006",
+            "distance_m": 2050.0,
+            "travel_time_s": 246.0
+          },
+          {
+            "id": "veh_007",
+            "distance_m": 4200.0,
+            "travel_time_s": 504.0
+          },
+          {
+            "id": "veh_008",
+            "distance_m": 1600.0,
+            "travel_time_s": 192.0
+          },
+          {
+            "id": "veh_009",
+            "distance_m": 3800.0,
+            "travel_time_s": 456.0
+          },
+          {
+            "id": "veh_010",
+            "distance_m": 2400.0,
+            "travel_time_s": 288.0
+          },
+          {
+            "id": "veh_011",
+            "distance_m": 1750.0,
+            "travel_time_s": 210.0
+          },
+          {
+            "id": "veh_012",
+            "distance_m": 3300.0,
+            "travel_time_s": 396.0
+          },
+          {
+            "id": "veh_013",
+            "distance_m": 2900.0,
+            "travel_time_s": 348.0
+          },
+          {
+            "id": "veh_014",
+            "distance_m": 2100.0,
+            "travel_time_s": 252.0
+          },
+          {
+            "id": "veh_015",
+            "distance_m": 4500.0,
+            "travel_time_s": 540.0
+          },
+          {
+            "id": "veh_016",
+            "distance_m": 1850.0,
+            "travel_time_s": 222.0
+          },
+          {
+            "id": "veh_017",
+            "distance_m": 2600.0,
+            "travel_time_s": 312.0
+          },
+          {
+            "id": "veh_018",
+            "distance_m": 3050.0,
+            "travel_time_s": 366.0
+          },
+          {
+            "id": "veh_019",
+            "distance_m": 1700.0,
+            "travel_time_s": 204.0
+          },
+          {
+            "id": "veh_020",
+            "distance_m": 2350.0,
+            "travel_time_s": 282.0
+          },
+          {
+            "id": "veh_021",
+            "distance_m": 3700.0,
+            "travel_time_s": 444.0
+          },
+          {
+            "id": "veh_022",
+            "distance_m": 2800.0,
+            "travel_time_s": 336.0
+          },
+          {
+            "id": "veh_023",
+            "distance_m": 1550.0,
+            "travel_time_s": 186.0
+          },
+          {
+            "id": "veh_024",
+            "distance_m": 4100.0,
+            "travel_time_s": 492.0
+          },
+          {
+            "id": "veh_025",
+            "distance_m": 2250.0,
+            "travel_time_s": 270.0
+          },
+          {
+            "id": "veh_026",
+            "distance_m": 3400.0,
+            "travel_time_s": 408.0
+          },
+          {
+            "id": "veh_027",
+            "distance_m": 1900.0,
+            "travel_time_s": 228.0
+          },
+          {
+            "id": "veh_028",
+            "distance_m": 2650.0,
+            "travel_time_s": 318.0
+          },
+          {
+            "id": "veh_029",
+            "distance_m": 3150.0,
+            "travel_time_s": 378.0
+          },
+          {
+            "id": "veh_030",
+            "distance_m": 2000.0,
+            "travel_time_s": 240.0
+          },
+          {
+            "id": "veh_031",
+            "distance_m": 4300.0,
+            "travel_time_s": 516.0
+          },
+          {
+            "id": "veh_032",
+            "distance_m": 1650.0,
+            "travel_time_s": 198.0
+          },
+          {
+            "id": "veh_033",
+            "distance_m": 2450.0,
+            "travel_time_s": 294.0
+          },
+          {
+            "id": "veh_034",
+            "distance_m": 3600.0,
+            "travel_time_s": 432.0
+          },
+          {
+            "id": "veh_035",
+            "distance_m": 2150.0,
+            "travel_time_s": 258.0
+          },
+          {
+            "id": "veh_036",
+            "distance_m": 3250.0,
+            "travel_time_s": 390.0
+          },
+          {
+            "id": "veh_037",
+            "distance_m": 1800.0,
+            "travel_time_s": 216.0
+          },
+          {
+            "id": "veh_038",
+            "distance_m": 2750.0,
+            "travel_time_s": 330.0
+          },
+          {
+            "id": "veh_039",
+            "distance_m": 4000.0,
+            "travel_time_s": 480.0
+          },
+          {
+            "id": "veh_040",
+            "distance_m": 2300.0,
+            "travel_time_s": 276.0
+          },
+          {
+            "id": "veh_041",
+            "distance_m": 1600.0,
+            "travel_time_s": 192.0
+          },
+          {
+            "id": "veh_042",
+            "distance_m": 3900.0,
+            "travel_time_s": 468.0
+          },
+          {
+            "id": "veh_043",
+            "distance_m": 2550.0,
+            "travel_time_s": 306.0
+          },
+          {
+            "id": "veh_044",
+            "distance_m": 3050.0,
+            "travel_time_s": 366.0
+          },
+          {
+            "id": "veh_045",
+            "distance_m": 1750.0,
+            "travel_time_s": 210.0
+          },
+          {
+            "id": "veh_046",
+            "distance_m": 2850.0,
+            "travel_time_s": 342.0
+          },
+          {
+            "id": "veh_047",
+            "distance_m": 3450.0,
+            "travel_time_s": 414.0
+          },
+          {
+            "id": "veh_048",
+            "distance_m": 2050.0,
+            "travel_time_s": 246.0
+          },
+          {
+            "id": "veh_049",
+            "distance_m": 1950.0,
+            "travel_time_s": 234.0
+          }
+        ]
+      }
+    ],
+    "dispatch_results": [
+      {
+        "hour": 8,
+        "scenario": "Оргил цаг",
+        "speed_kmh": 10,
+        "kpi": {
+          "n_orders": 50,
+          "avg_nearest_min": 8.8,
+          "avg_smart_min": 7.7,
+          "improvement_pct": 12.1,
+          "time_saved_min": 1.1,
+          "avg_nearest_km": 1.47,
+          "avg_smart_km": 1.29,
+          "distance_saved_km": 0.18,
+          "vehicle_type": "van",
+          "co2_factor_g_km": 180,
+          "co2_saved_kg": 1.58
+        }
+      },
+      {
+        "hour": 14,
+        "scenario": "Ердийн цаг",
+        "speed_kmh": 30,
+        "kpi": {
+          "n_orders": 50,
+          "avg_nearest_min": 2.9,
+          "avg_smart_min": 2.6,
+          "improvement_pct": 12.1,
+          "time_saved_min": 0.4,
+          "avg_nearest_km": 1.47,
+          "avg_smart_km": 1.29,
+          "distance_saved_km": 0.18,
+          "vehicle_type": "van",
+          "co2_factor_g_km": 180,
+          "co2_saved_kg": 1.58
+        }
+      }
+    ],
+    "unified_kpi": {
+      "dispatch": {
+        "avg_nearest_min": 8.8,
+        "avg_smart_min": 7.7,
+        "improvement_pct": 12.1,
+        "time_saved_min": 1.1,
+        "co2_saved_kg": 1.58,
+        "n_orders": 50
+      },
+      "simulation": {
+        "peak_avg_min": 18.5,
+        "normal_avg_min": 5.4,
+        "congestion_pct": 80.0,
+        "delay_vs_normal_s": 789.7
+      },
+      "summary": {
+        "headline_improvement_pct": 12.1,
+        "data_source": "dispatch pipeline (graph-based)",
+        "vehicle_type": "van",
+        "note": "Бүх KPI dispatch pipeline-аас — graph shortest path дээр суурилна. Simulation нь speed/congestion контекст өгнө."
+      }
+    },
+    "kpi_formulas": {
+      "improvement_pct": "(nearest_eta - smart_eta) / nearest_eta × 100",
+      "congestion_pct": "(1 - speed_kmh / 50) × 100  →  peak=80%, normal=40%",
+      "co2_saved_kg": "saved_km × 180 g/km × n_orders / 1000",
+      "travel_time": "distance_m / 1000 / speed_kmh × 60  (физик томьёо)",
+      "smart_advantage": "SMART_ROUTE_FACTOR=0.88 → graph shortest_path нь Haversine-аас 12% богино"
+    }
+  }

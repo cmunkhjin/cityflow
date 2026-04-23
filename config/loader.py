@@ -3,7 +3,7 @@ from pathlib import Path
 
 _config_cache = None
 
-def load_config(path="config/config.yaml"):
+def load_config(path="config/settings.yaml"):
     global _config_cache
 
     if _config_cache is None:

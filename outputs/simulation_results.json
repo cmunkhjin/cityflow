@@ -1,0 +1,428 @@
+[
+  {
+    "scenario": "Orgil tsag",
+    "hour": 8,
+    "speed_kmh": 10,
+    "n_vehicles": 50,
+    "avg_travel_time_s": 1414.5,
+    "avg_travel_time_m": 23.57,
+    "avg_delay_s": 1054.5,
+    "congestion_pct": 71.4,
+    "arrived_pct": 100.0,
+    "vehicles": [
+      {
+        "id": "veh_000",
+        "travel_time_s": 1326.4
+      },
+      {
+        "id": "veh_001",
+        "travel_time_s": 1082.6
+      },
+      {
+        "id": "veh_002",
+        "travel_time_s": 1350.0
+      },
+      {
+        "id": "veh_003",
+        "travel_time_s": 1074.1
+      },
+      {
+        "id": "veh_004",
+        "travel_time_s": 1664.7
+      },
+      {
+        "id": "veh_005",
+        "travel_time_s": 1859.6
+      },
+      {
+        "id": "veh_006",
+        "travel_time_s": 1996.0
+      },
+      {
+        "id": "veh_007",
+        "travel_time_s": 2125.3
+      },
+      {
+        "id": "veh_008",
+        "travel_time_s": 1002.2
+      },
+      {
+        "id": "veh_009",
+        "travel_time_s": 1438.8
+      },
+      {
+        "id": "veh_010",
+        "travel_time_s": 2180.2
+      },
+      {
+        "id": "veh_011",
+        "travel_time_s": 1764.1
+      },
+      {
+        "id": "veh_012",
+        "travel_time_s": 1677.7
+      },
+      {
+        "id": "veh_013",
+        "travel_time_s": 887.1
+      },
+      {
+        "id": "veh_014",
+        "travel_time_s": 1119.8
+      },
+      {
+        "id": "veh_015",
+        "travel_time_s": 733.4
+      },
+      {
+        "id": "veh_016",
+        "travel_time_s": 1909.3
+      },
+      {
+        "id": "veh_017",
+        "travel_time_s": 1444.3
+      },
+      {
+        "id": "veh_018",
+        "travel_time_s": 1038.7
+      },
+      {
+        "id": "veh_019",
+        "travel_time_s": 1341.6
+      },
+      {
+        "id": "veh_020",
+        "travel_time_s": 1450.6
+      },
+      {
+        "id": "veh_021",
+        "travel_time_s": 1598.0
+      },
+      {
+        "id": "veh_022",
+        "travel_time_s": 1667.2
+      },
+      {
+        "id": "veh_023",
+        "travel_time_s": 1869.6
+      },
+      {
+        "id": "veh_024",
+        "travel_time_s": 1832.6
+      },
+      {
+        "id": "veh_025",
+        "travel_time_s": 1393.0
+      },
+      {
+        "id": "veh_026",
+        "travel_time_s": 1457.0
+      },
+      {
+        "id": "veh_027",
+        "travel_time_s": 1427.7
+      },
+      {
+        "id": "veh_028",
+        "travel_time_s": 697.8
+      },
+      {
+        "id": "veh_029",
+        "travel_time_s": 1223.8
+      },
+      {
+        "id": "veh_030",
+        "travel_time_s": 2219.1
+      },
+      {
+        "id": "veh_031",
+        "travel_time_s": 1567.6
+      },
+      {
+        "id": "veh_032",
+        "travel_time_s": 940.6
+      },
+      {
+        "id": "veh_033",
+        "travel_time_s": 789.9
+      },
+      {
+        "id": "veh_034",
+        "travel_time_s": 1166.6
+      },
+      {
+        "id": "veh_035",
+        "travel_time_s": 1400.0
+      },
+      {
+        "id": "veh_036",
+        "travel_time_s": 2125.1
+      },
+      {
+        "id": "veh_037",
+        "travel_time_s": 2018.1
+      },
+      {
+        "id": "veh_038",
+        "travel_time_s": 1273.9
+      },
+      {
+        "id": "veh_039",
+        "travel_time_s": 1843.4
+      },
+      {
+        "id": "veh_040",
+        "travel_time_s": 1221.2
+      },
+      {
+        "id": "veh_041",
+        "travel_time_s": 1820.0
+      },
+      {
+        "id": "veh_042",
+        "travel_time_s": 579.3
+      },
+      {
+        "id": "veh_043",
+        "travel_time_s": 659.0
+      },
+      {
+        "id": "veh_044",
+        "travel_time_s": 1009.0
+      },
+      {
+        "id": "veh_045",
+        "travel_time_s": 1503.5
+      },
+      {
+        "id": "veh_046",
+        "travel_time_s": 1306.1
+      },
+      {
+        "id": "veh_047",
+        "travel_time_s": 2121.3
+      },
+      {
+        "id": "veh_048",
+        "travel_time_s": 815.2
+      },
+      {
+        "id": "veh_049",
+        "travel_time_s": 710.9
+      }
+    ]
+  },
+  {
+    "scenario": "Erdiyn tsag",
+    "hour": 14,
+    "speed_kmh": 30,
+    "n_vehicles": 50,
+    "avg_travel_time_s": 378.1,
+    "avg_travel_time_m": 6.3,
+    "avg_delay_s": 18.1,
+    "congestion_pct": 27.3,
+    "arrived_pct": 100.0,
+    "vehicles": [
+      {
+        "id": "veh_000",
+        "travel_time_s": 536.3
+      },
+      {
+        "id": "veh_001",
+        "travel_time_s": 386.5
+      },
+      {
+        "id": "veh_002",
+        "travel_time_s": 544.3
+      },
+      {
+        "id": "veh_003",
+        "travel_time_s": 275.3
+      },
+      {
+        "id": "veh_004",
+        "travel_time_s": 372.7
+      },
+      {
+        "id": "veh_005",
+        "travel_time_s": 625.2
+      },
+      {
+        "id": "veh_006",
+        "travel_time_s": 267.9
+      },
+      {
+        "id": "veh_007",
+        "travel_time_s": 539.1
+      },
+      {
+        "id": "veh_008",
+        "travel_time_s": 407.8
+      },
+      {
+        "id": "veh_009",
+        "travel_time_s": 248.6
+      },
+      {
+        "id": "veh_010",
+        "travel_time_s": 582.8
+      },
+      {
+        "id": "veh_011",
+        "travel_time_s": 456.9
+      },
+      {
+        "id": "veh_012",
+        "travel_time_s": 363.1
+      },
+      {
+        "id": "veh_013",
+        "travel_time_s": 443.1
+      },
+      {
+        "id": "veh_014",
+        "travel_time_s": 212.1
+      },
+      {
+        "id": "veh_015",
+        "travel_time_s": 290.2
+      },
+      {
+        "id": "veh_016",
+        "travel_time_s": 209.7
+      },
+      {
+        "id": "veh_017",
+        "travel_time_s": 182.6
+      },
+      {
+        "id": "veh_018",
+        "travel_time_s": 462.1
+      },
+      {
+        "id": "veh_019",
+        "travel_time_s": 417.9
+      },
+      {
+        "id": "veh_020",
+        "travel_time_s": 161.7
+      },
+      {
+        "id": "veh_021",
+        "travel_time_s": 329.2
+      },
+      {
+        "id": "veh_022",
+        "travel_time_s": 335.7
+      },
+      {
+        "id": "veh_023",
+        "travel_time_s": 356.2
+      },
+      {
+        "id": "veh_024",
+        "travel_time_s": 453.9
+      },
+      {
+        "id": "veh_025",
+        "travel_time_s": 267.9
+      },
+      {
+        "id": "veh_026",
+        "travel_time_s": 506.6
+      },
+      {
+        "id": "veh_027",
+        "travel_time_s": 307.8
+      },
+      {
+        "id": "veh_028",
+        "travel_time_s": 352.1
+      },
+      {
+        "id": "veh_029",
+        "travel_time_s": 200.7
+      },
+      {
+        "id": "veh_030",
+        "travel_time_s": 544.7
+      },
+      {
+        "id": "veh_031",
+        "travel_time_s": 379.5
+      },
+      {
+        "id": "veh_032",
+        "travel_time_s": 179.0
+      },
+      {
+        "id": "veh_033",
+        "travel_time_s": 283.7
+      },
+      {
+        "id": "veh_034",
+        "travel_time_s": 510.7
+      },
+      {
+        "id": "veh_035",
+        "travel_time_s": 393.3
+      },
+      {
+        "id": "veh_036",
+        "travel_time_s": 484.3
+      },
+      {
+        "id": "veh_037",
+        "travel_time_s": 479.1
+      },
+      {
+        "id": "veh_038",
+        "travel_time_s": 475.8
+      },
+      {
+        "id": "veh_039",
+        "travel_time_s": 456.7
+      },
+      {
+        "id": "veh_040",
+        "travel_time_s": 548.3
+      },
+      {
+        "id": "veh_041",
+        "travel_time_s": 498.1
+      },
+      {
+        "id": "veh_042",
+        "travel_time_s": 189.7
+      },
+      {
+        "id": "veh_043",
+        "travel_time_s": 206.0
+      },
+      {
+        "id": "veh_044",
+        "travel_time_s": 235.3
+      },
+      {
+        "id": "veh_045",
+        "travel_time_s": 273.0
+      },
+      {
+        "id": "veh_046",
+        "travel_time_s": 453.8
+      },
+      {
+        "id": "veh_047",
+        "travel_time_s": 434.7
+      },
+      {
+        "id": "veh_048",
+        "travel_time_s": 271.3
+      },
+      {
+        "id": "veh_049",
+        "travel_time_s": 514.5
+      }
+    ]
+  }
+]

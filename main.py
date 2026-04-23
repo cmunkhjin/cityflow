@@ -13,6 +13,7 @@ CityFlow — Unified CLI Pipeline
 """
 
 import argparse
+import json
 import sys
 import time
 from pathlib import Path
@@ -38,6 +39,40 @@ def _print_step(name: str) -> None:
     log.info(line)
 
 
+# ── KPI нэгтгэлт (simulate + dispatch хоёулаа дууссаны дараа) ──
+
+def _print_unified_kpi(cfg: dict) -> None:
+    """
+    simulation_results.json + dispatch_results.json хоёулаа байвал
+    src/kpi.py ашиглан нэгдсэн KPI хэвлэнэ.
+
+    Байршил: src/kpi.py
+    Import: from src.kpi import build_unified_kpi, format_for_presentation
+    """
+    from src.kpi import build_unified_kpi, format_for_presentation
+
+    sim_path      = cfg["paths"]["simulation_results"]
+    dispatch_path = cfg["paths"]["dispatch_results"]
+
+    if not _is_cached(sim_path):
+        log.info("KPI алгасав — simulation үр дүн байхгүй (%s)", sim_path)
+        log.info("  → эхлээд: python main.py --step simulate")
+        return
+
+    if not _is_cached(dispatch_path):
+        log.info("KPI алгасав — dispatch үр дүн байхгүй (%s)", dispatch_path)
+        log.info("  → эхлээд: python main.py --step dispatch")
+        return
+
+    with open(dispatch_path, encoding="utf-8") as f:
+        dispatch_data = json.load(f)
+    with open(sim_path, encoding="utf-8") as f:
+        sim_data = json.load(f)
+
+    kpi = build_unified_kpi(dispatch_data, sim_data)
+    print(format_for_presentation(kpi))
+
+
 # ── Step функцүүд ─────────────────────────────────────────
 
 def step_fetch(cfg: dict, force: bool = False) -> None:
@@ -48,7 +83,7 @@ def step_fetch(cfg: dict, force: bool = False) -> None:
         return
 
     _print_step("fetch — OSM өгөгдөл татах")
-    from src.ingestion.fetch_osm import run
+    from src.fetch_osm import run
     t = time.time()
     run(cfg)
     log.info("✅  fetch дууслаа (%.1f сек)", time.time() - t)
@@ -62,24 +97,27 @@ def step_build(cfg: dict, force: bool = False) -> None:
         return
 
     _print_step("build — граф байгуулах")
-    from src.graph.build import run
+    from src.build import run
     t = time.time()
     run(cfg)
     log.info("✅  build дууслаа (%.1f сек)", time.time() - t)
 
 
 def step_simulate(cfg: dict, force: bool = False) -> None:
-    """SUMO симуляци."""
+    """SUMO симуляци (SUMO байхгүй бол deterministic fallback)."""
     result = cfg["paths"]["simulation_results"]
     if not force and _is_cached(result):
         log.info("Cache байна → %s", result)
         return
 
     _print_step("simulate — SUMO симуляци")
-    from src.simulation.runner import run
+    from src.runner import run
     t = time.time()
     run(cfg)
     log.info("✅  simulate дууслаа (%.1f сек)", time.time() - t)
+
+    # Dispatch үр дүн байвал хоёрыг нэгтгэж KPI харуулна
+    _print_unified_kpi(cfg)
 
 
 def step_dispatch(cfg: dict, force: bool = False) -> None:
@@ -90,19 +128,27 @@ def step_dispatch(cfg: dict, force: bool = False) -> None:
         return
 
     _print_step("dispatch — smart dispatch")
-    from src.optimization.dispatch import run
+    from src.dispatch import run
     t = time.time()
     run(cfg)
     log.info("✅  dispatch дууслаа (%.1f сек)", time.time() - t)
+
+    # Simulation үр дүн байвал хоёрыг нэгтгэж KPI харуулна
+    _print_unified_kpi(cfg)
 
 
 def step_all(cfg: dict, force: bool = False) -> None:
     """Бүх алхмыг дараалан ажиллуулна."""
     for fn in [step_fetch, step_build, step_simulate, step_dispatch]:
         fn(cfg, force=force)
+
     log.info("=" * 50)
     log.info("  ✅  БҮТЭН PIPELINE ДУУСЛАА")
     log.info("=" * 50)
+
+    # step_dispatch дотор аль хэдийн хэвлэгдсэн боловч
+    # --step all дууссаны дараа нэг удаа дахин харуулна
+    _print_unified_kpi(cfg)
 
 
 def step_dashboard(cfg: dict) -> None:
@@ -110,7 +156,7 @@ def step_dashboard(cfg: dict) -> None:
     import subprocess
     log.info("Dashboard эхлүүлж байна → http://localhost:8501")
     subprocess.run([sys.executable, "-m", "streamlit",
-                    "run", "src/dashboard/app.py"], check=False)
+                    "run", "src/app.py"], check=False)
 
 
 def step_demo(cfg: dict) -> None:
@@ -131,6 +177,8 @@ def parse_args() -> argparse.Namespace:
         epilog="""
 Жишээнүүд:
   python main.py --step fetch
+  python main.py --step simulate
+  python main.py --step dispatch
   python main.py --step all
   python main.py --step all --force
   python main.py --step dashboard
@@ -157,16 +205,16 @@ def parse_args() -> argparse.Namespace:
 
 
 def main() -> None:
-    args = args = parse_args()
+    args = parse_args()
 
-    from config.loader import load
-    cfg = load(args.config)
+    from config.loader import load_config
+    cfg = load_config(args.config)
 
     # Output хавтас бэлдэх
     ensure_dir(cfg["paths"]["data_dir"])
     ensure_dir(cfg["paths"]["output_dir"])
 
-    dispatch = {
+    dispatch_map = {
         "fetch":     lambda: step_fetch(cfg, args.force),
         "build":     lambda: step_build(cfg, args.force),
         "simulate":  lambda: step_simulate(cfg, args.force),
@@ -177,7 +225,7 @@ def main() -> None:
     }
 
     try:
-        dispatch[args.step]()
+        dispatch_map[args.step]()
     except KeyboardInterrupt:
         log.info("Зогсоосон.")
     except Exception as e:

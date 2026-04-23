@@ -1,5 +1,5 @@
 city:
-  name: "Sukhbaatar District, Ulaanbaatar, Mongolia"
+  name: "Ulaanbaatar, Mongolia"
   center_lat: 47.9184
   center_lon: 106.9177
   network_type: "drive"
@@ -10,7 +10,7 @@ traffic:
   rush_hours:
     - [7, 9]
     - [17, 19]
-  congestion_penalty: 2.5      # peak цагт замын жин × энэ тоо
+  congestion_penalty: 2.5
 
 simulation:
   n_vehicles: 50
@@ -18,9 +18,9 @@ simulation:
   random_seed: 42
   scenarios:
     - hour: 8
-      label: "Оргил цаг"
+      label: "Orgil tsag"
     - hour: 14
-      label: "Ердийн цаг"
+      label: "Erdiyn tsag"
 
 dispatch:
   n_drivers: 8
@@ -32,18 +32,18 @@ mock:
   n_vehicles: 10
   n_drivers: 10
   districts:
-    - "Сүхбаатар"
-    - "Баянзүрх"
-    - "Чингэлтэй"
-    - "Баянгол"
-    - "Хан-Уул"
-    - "Сонгинохайрхан"
+    - "Sukhbaatar"
+    - "Bayanzurkh"
+    - "Chingeltei"
+    - "Bayangol"
+    - "Khan-Uul"
+    - "Songinokhairkhan"
 
 paths:
   data_dir: "data"
   output_dir: "outputs"
-  graphml: "data/sukhbaatar.graphml"
-  osm: "data/sukhbaatar.osm"
-  net_xml: "data/sukhbaatar.net.xml"
+  graphml: "data/ulaanbaatar.graphml"
+  osm: "data/ulaanbaatar.osm"
+  net_xml: "data/ulaanbaatar.net.xml"
   dispatch_results: "outputs/dispatch_results.json"
   simulation_results: "outputs/simulation_results.json"
